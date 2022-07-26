@@ -1,10 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Victor Martinez
-	email = victor.martinez@prima.it
-# Please adapt and uncomment the following lines:
-#	name = JasterV
-#	email = victor.martinez@prima.it
+	email = 49537445+JasterV@users.noreply.github.com
 [init]
 	defaultBranch = main
 [pull]
