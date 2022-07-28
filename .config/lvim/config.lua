@@ -12,11 +12,20 @@ lvim.colorscheme = "tokyonight"
 vim.opt.relativenumber = true
 
 lvim.use_icons = true
+
+vim.diagnostic.config({
+  virtual_text = false
+})
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "space"
+lvim.leader                        = "space"
 -- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
--- unmap a default keymapping
+lvim.keys.normal_mode["<C-s>"]     = ":w<cr>"
+lvim.keys.normal_mode["<Leader>x"] = vim.diagnostic.open_float -- unmap a default keymapping
+lvim.keys.normal_mode["<Leader>c"] = ":let @/ = \"\"<CR>"
+lvim.keys.normal_mode["<Leader>k"] = ":bnext<CR>"
+lvim.keys.normal_mode["<Leader>j"] = ":bprevious<CR>"
+lvim.keys.normal_mode["<Leader>d"] = ":bprevious<CR>:bdelete #<CR>"
 -- vim.keymap.del("n", "<C-Up>")
 
 -- override a default keymapping
@@ -43,17 +52,6 @@ lvim.builtin.telescope.defaults.mappings = {
   },
 }
 
--- Use which-key to add extra bindings with the leader-key prefix
-lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
-}
-
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
@@ -61,7 +59,11 @@ lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
-lvim.builtin.bufferline.active = false
+lvim.builtin.bufferline.active = true
+lvim.builtin.bufferline.options = {
+  always_show_bufferline = true,
+  mode = "buffers"
+}
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -84,6 +86,28 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 
 lvim.builtin.treesitter.highlight.enabled = true
 
+-- lualine
+lvim.builtin.lualine.options = {
+  theme = 'auto',
+  component_separators = "|",
+  section_separators = { left = "", right = "" },
+}
+lvim.builtin.lualine.sections = {
+  lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+  lualine_b = { "filename", "branch", { "diff", colored = false } },
+  lualine_c = {},
+  lualine_x = {},
+  lualine_y = { "filetype", "progress" },
+  lualine_z = { { "location", separator = { right = "" }, left_padding = 2 } },
+}
+lvim.builtin.lualine.inactive_sections = {
+  lualine_a = { "filename" },
+  lualine_b = {},
+  lualine_c = {},
+  lualine_x = {},
+  lualine_y = {},
+  lualine_z = {},
+}
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
@@ -94,9 +118,14 @@ lvim.lsp.automatic_servers_installation = true
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
-
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup {}
+    end
+  },
   {
     "nacro90/numb.nvim",
     config = function()
@@ -104,11 +133,6 @@ lvim.plugins = {
     end
   },
   { "folke/tokyonight.nvim" },
-
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
   {
     "simrat39/rust-tools.nvim",
     config = function()
