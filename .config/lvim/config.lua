@@ -13,14 +13,14 @@ vim.opt.relativenumber = true
 
 lvim.use_icons = true
 
-vim.diagnostic.config({
-  virtual_text = false
-})
+-- Disable virtual text
+lvim.lsp.diagnostics.virtual_text = false
+lvim.builtin.which_key.mappings["gj"] = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle LSP lines" }
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader                        = "space"
 -- add your own keymapping
-lvim.keys.normal_mode["<C-s>"]     = ":w<cr>"
+lvim.keys.normal_mode["<C-s>"]     = ":w<CR>"
 lvim.keys.normal_mode["<Leader>x"] = vim.diagnostic.open_float -- unmap a default keymapping
 lvim.keys.normal_mode["<Leader>c"] = ":let @/ = \"\"<CR>"
 lvim.keys.normal_mode["<Leader>k"] = ":bnext<CR>"
@@ -29,7 +29,7 @@ lvim.keys.normal_mode["<Leader>d"] = ":bprevious<CR>:bdelete #<CR>"
 -- vim.keymap.del("n", "<C-Up>")
 
 -- override a default keymapping
-lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+lvim.keys.normal_mode["<C-q>"] = ":q<CR>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 -- disable default mappings
 lvim.keys.normal_mode["C-t"] = false
 
