@@ -98,7 +98,7 @@ lvim.builtin.lualine.sections = {
   lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
   lualine_b = { "filename", "branch", { "diff", colored = false } },
   lualine_c = {},
-  lualine_x = { components.lsp },
+  lualine_x = { components.diagnostics, components.lsp },
   lualine_y = { "filetype", "progress" },
   lualine_z = { { "location", separator = { right = "" }, left_padding = 2 } },
 }
