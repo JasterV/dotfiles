@@ -87,6 +87,8 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
 -- lualine
+local components = require("lvim.core.lualine.components")
+
 lvim.builtin.lualine.options = {
   theme = 'auto',
   component_separators = "|",
@@ -96,7 +98,7 @@ lvim.builtin.lualine.sections = {
   lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
   lualine_b = { "filename", "branch", { "diff", colored = false } },
   lualine_c = {},
-  lualine_x = {},
+  lualine_x = { components.lsp },
   lualine_y = { "filetype", "progress" },
   lualine_z = { { "location", separator = { right = "" }, left_padding = 2 } },
 }
