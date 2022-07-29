@@ -15,15 +15,11 @@ lvim.use_icons = true
 
 -- Disable virtual text
 lvim.lsp.diagnostics.virtual_text = false
-lvim.builtin.which_key.mappings["gj"] = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle LSP lines" }
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader                        = "space"
+lvim.leader                    = "space"
 -- add your own keymapping
-lvim.keys.normal_mode["<C-s>"]     = ":w<CR>"
-lvim.keys.normal_mode["<Leader>x"] = vim.diagnostic.open_float -- unmap a default keymapping
-lvim.keys.normal_mode["<Leader>c"] = ":let @/ = \"\"<CR>"
-lvim.keys.normal_mode["<Leader>d"] = ":bprevious<CR>:bdelete #<CR>"
+lvim.keys.normal_mode["<C-s>"] = ":w<CR>"
 -- vim.keymap.del("n", "<C-Up>")
 
 -- override a default keymapping
@@ -31,6 +27,11 @@ lvim.keys.normal_mode["<C-q>"] = ":q<CR>" -- or vim.keymap.set("n", "<C-q>", ":q
 -- disable default mappings
 lvim.keys.normal_mode["C-t"] = false
 
+lvim.builtin.which_key.mappings["x"] = { vim.diagnostic.open_float, "Open diagnostics float" }
+lvim.builtin.which_key.mappings["c"] = { ":let @/ = \"\"<CR>", "Clear search" }
+lvim.builtin.which_key.mappings["d"] = { ":bprevious<CR>:bdelete #<CR>", "Close bufferline tab" }
+lvim.builtin.which_key.mappings["bc"] = { ":BufferKill<CR>", "Close buffer" }
+lvim.builtin.which_key.mappings["gj"] = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle LSP lines" }
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 local _, actions = pcall(require, "telescope.actions")
