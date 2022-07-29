@@ -23,8 +23,6 @@ lvim.leader                        = "space"
 lvim.keys.normal_mode["<C-s>"]     = ":w<CR>"
 lvim.keys.normal_mode["<Leader>x"] = vim.diagnostic.open_float -- unmap a default keymapping
 lvim.keys.normal_mode["<Leader>c"] = ":let @/ = \"\"<CR>"
-lvim.keys.normal_mode["<Leader>k"] = ":bnext<CR>"
-lvim.keys.normal_mode["<Leader>j"] = ":bprevious<CR>"
 lvim.keys.normal_mode["<Leader>d"] = ":bprevious<CR>:bdelete #<CR>"
 -- vim.keymap.del("n", "<C-Up>")
 
@@ -122,6 +120,19 @@ lvim.lsp.automatic_servers_installation = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "andweeb/presence.nvim",
+    config = function()
+      require("presence").setup {
+        neovim_image_text = "neovim",
+        log_level = "error",
+        editing_text = "Editing « %s »",
+        file_explorer_text = "Browsing files",
+        reading_text = "Reading  « %s »",
+        workspace_text = "Working on « %s »",
+      }
+    end
+  },
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
