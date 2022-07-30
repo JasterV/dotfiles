@@ -7,6 +7,10 @@ lvim.log.level = "warn"
 
 lvim.format_on_save = true
 
+lvim.transparent_window = true
+
+vim.opt.termguicolors = true
+
 lvim.colorscheme = "tokyonight"
 
 vim.opt.relativenumber = true
@@ -31,7 +35,7 @@ lvim.builtin.which_key.mappings["x"] = { vim.diagnostic.open_float, "Open diagno
 lvim.builtin.which_key.mappings["c"] = { ":let @/ = \"\"<CR>", "Clear search" }
 lvim.builtin.which_key.mappings["d"] = { ":bprevious<CR>:bdelete #<CR>", "Close bufferline tab" }
 lvim.builtin.which_key.mappings["bc"] = { ":BufferKill<CR>", "Close buffer" }
-lvim.builtin.which_key.mappings["gj"] = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle LSP lines" }
+lvim.builtin.which_key.mappings["gt"] = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle LSP lines" }
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 local _, actions = pcall(require, "telescope.actions")
@@ -58,11 +62,10 @@ lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+-- Bufferline
 lvim.builtin.bufferline.active = true
-lvim.builtin.bufferline.options = {
-  always_show_bufferline = true,
-  mode = "buffers"
-}
+lvim.builtin.bufferline.options.always_show_bufferline = true
+lvim.builtin.bufferline.options.mode = "buffers"
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -121,19 +124,6 @@ lvim.lsp.automatic_servers_installation = true
 
 -- Additional Plugins
 lvim.plugins = {
-  {
-    "andweeb/presence.nvim",
-    config = function()
-      require("presence").setup {
-        neovim_image_text = "neovim",
-        log_level = "error",
-        editing_text = "Editing « %s »",
-        file_explorer_text = "Browsing files",
-        reading_text = "Reading  « %s »",
-        workspace_text = "Working on « %s »",
-      }
-    end
-  },
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
