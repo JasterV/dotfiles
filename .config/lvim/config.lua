@@ -1,42 +1,77 @@
 --[[
-lvim is the global options object
-]]
-
--- general
-lvim.log.level = "warn"
-
-lvim.format_on_save = true
-
-lvim.transparent_window = true
+ GENERAL VIM CONFIG
+--]]
 
 vim.opt.termguicolors = true
-
-lvim.colorscheme = "tokyonight"
-
 vim.opt.relativenumber = true
 
-lvim.use_icons = true
+--[[
+ GENERAL LVIM CONFIG
+--]]
 
+lvim.use_icons = true
+lvim.colorscheme = "tokyonight"
+lvim.log.level = "warn"
+lvim.format_on_save = true
+lvim.transparent_window = true
 -- Disable virtual text
 lvim.lsp.diagnostics.virtual_text = false
 
--- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader                    = "space"
--- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<CR>"
--- vim.keymap.del("n", "<C-Up>")
+--[[
+ KEYMAPS
+--]]
 
--- override a default keymapping
-lvim.keys.normal_mode["<C-q>"] = ":q<CR>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
--- disable default mappings
-lvim.keys.normal_mode["C-t"] = false
-
-lvim.builtin.which_key.mappings["x"] = { vim.diagnostic.open_float, "Open diagnostics float" }
-lvim.builtin.which_key.mappings["c"] = { ":let @/ = \"\"<CR>", "Clear search" }
-lvim.builtin.which_key.mappings["d"] = { ":bprevious<CR>:bdelete #<CR>", "Close bufferline tab" }
+lvim.leader                           = "space"
+lvim.keys.normal_mode["<C-s>"]        = ":w<CR>"
+lvim.keys.normal_mode["<C-q>"]        = ":q<CR>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+lvim.keys.normal_mode["C-t"]          = false
+-- WhichKey Keymaps
+lvim.builtin.which_key.mappings["x"]  = { vim.diagnostic.open_float, "Open diagnostics float" }
+lvim.builtin.which_key.mappings["c"]  = { ":let @/ = \"\"<CR>", "Clear search" }
+lvim.builtin.which_key.mappings["d"]  = { ":bprevious<CR>:bdelete #<CR>", "Close bufferline tab" }
 lvim.builtin.which_key.mappings["bc"] = { ":BufferKill<CR>", "Close buffer" }
 lvim.builtin.which_key.mappings["gt"] = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle LSP lines" }
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
+
+--[[
+ BUILTIN PLUGINS
+
+ After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+--]]
+
+-- Alpha
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
+
+-- Notify
+lvim.builtin.notify.active = true
+
+-- Terminal
+lvim.builtin.terminal.active = false
+
+-- NvimTree
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+
+-- Bufferline
+lvim.builtin.bufferline.active = true
+lvim.builtin.bufferline.options.always_show_bufferline = true
+lvim.builtin.bufferline.options.mode = "buffers"
+
+-- Treesitter
+lvim.builtin.treesitter.ensure_installed = {
+  "bash",
+  "javascript",
+  "json",
+  "lua",
+  "css",
+  "rust",
+  "yaml",
+  "elm",
+  "haskell"
+}
+lvim.builtin.treesitter.highlight.enabled = true
+
+-- Telescope
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 local _, actions = pcall(require, "telescope.actions")
 
@@ -55,40 +90,7 @@ lvim.builtin.telescope.defaults.mappings = {
   },
 }
 
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
-lvim.builtin.terminal.active = false
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
--- Bufferline
-lvim.builtin.bufferline.active = true
-lvim.builtin.bufferline.options.always_show_bufferline = true
-lvim.builtin.bufferline.options.mode = "buffers"
-
--- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  -- "c",
-  "javascript",
-  "json",
-  "lua",
-  -- "python",
-  -- "typescript",
-  -- "tsx",
-  "css",
-  "rust",
-  -- "java",
-  "yaml",
-  "elm"
-}
-
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-
-lvim.builtin.treesitter.highlight.enabled = true
-
--- lualine
+-- Lualine
 local components = require("lvim.core.lualine.components")
 
 lvim.builtin.lualine.options = {
@@ -112,56 +114,66 @@ lvim.builtin.lualine.inactive_sections = {
   lualine_y = {},
   lualine_z = {},
 }
--- generic LSP settings
 
--- ---@usage disable automatic installation of servers
+-- LSP
 lvim.lsp.automatic_servers_installation = true
 
--- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
--- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
--- local opts = {} -- check the lspconfig documentation for a list of all possible options
--- require("lvim.lsp.manager").setup("pyright", opts)
+--[[
+  ADDITIONAL PLUGINS
+]]
 
--- Additional Plugins
-lvim.plugins = {
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function()
-      require("lsp_lines").setup {}
-    end
-  },
-  {
-    "nacro90/numb.nvim",
-    config = function()
-      require("numb").setup()
-    end
-  },
-  { "folke/tokyonight.nvim" },
-  {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      local lsp_installer_servers = require "nvim-lsp-installer.servers"
-      local _, requested_server = lsp_installer_servers.get_server "rust_analyzer"
-      require("rust-tools").setup({
-        tools = {
-          autoSetHints = true,
-          hover_with_actions = true,
-          runnables = {
-            use_telescope = true,
-          },
-        },
-        server = {
-          cmd_env = requested_server._default_options.cmd_env,
-          on_attach = require("lvim.lsp").common_on_attach,
-          on_init = require("lvim.lsp").common_on_init,
-        },
-      })
-    end,
-    ft = { "rust", "rs" },
-  },
+local lsp_lines = {
+  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  config = function()
+    require("lsp_lines").setup {}
+  end
 }
 
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
+local numb = {
+  "nacro90/numb.nvim",
+  config = function()
+    require("numb").setup()
+  end
+}
+
+local colorschemes = {
+  tokyionight = { "folke/tokyonight.nvim" }
+}
+
+local rust_tools = {
+  "simrat39/rust-tools.nvim",
+  config = function()
+    local lsp_installer_servers = require "nvim-lsp-installer.servers"
+    local _, requested_server = lsp_installer_servers.get_server "rust_analyzer"
+    require("rust-tools").setup({
+      tools = {
+        autoSetHints = true,
+        hover_with_actions = true,
+        runnables = {
+          use_telescope = true,
+        },
+      },
+      server = {
+        cmd_env = requested_server._default_options.cmd_env,
+        on_attach = require("lvim.lsp").common_on_attach,
+        on_init = require("lvim.lsp").common_on_init,
+      },
+    })
+  end,
+  ft = { "rust", "rs" },
+}
+
+lvim.plugins = {
+  lsp_lines,
+  numb,
+  colorschemes.tokyionight,
+  rust_tools
+}
+
+--[[
+  AUTOCOMMANDS
+]]
+
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.json", "*.jsonc" },
   -- enable wrap mode for json files only
