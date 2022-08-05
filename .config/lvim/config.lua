@@ -30,7 +30,8 @@ lvim.builtin.which_key.mappings["x"]  = { vim.diagnostic.open_float, "Open diagn
 lvim.builtin.which_key.mappings["c"]  = { ":let @/ = \"\"<CR>", "Clear search" }
 lvim.builtin.which_key.mappings["d"]  = { ":bprevious<CR>:bdelete #<CR>", "Close bufferline tab" }
 lvim.builtin.which_key.mappings["bc"] = { ":BufferKill<CR>", "Close buffer" }
-lvim.builtin.which_key.mappings["gt"] = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle LSP lines" }
+lvim.builtin.which_key.mappings["lt"] = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle LSP lines" }
+lvim.builtin.which_key.mappings["gP"] = { ":Git pull<CR>", "Git pull" }
 
 --[[
  BUILTIN PLUGINS
@@ -47,6 +48,9 @@ lvim.builtin.notify.active = true
 
 -- Terminal
 lvim.builtin.terminal.active = false
+
+-- Gitsigns
+lvim.builtin.gitsigns.active = false
 
 -- NvimTree
 lvim.builtin.nvimtree.setup.view.side = "left"
@@ -70,6 +74,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "haskell"
 }
 lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.rainbow.enable = true
+lvim.builtin.treesitter.rainbow.extended_mode = true
 
 -- Telescope
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -137,7 +143,8 @@ local numb = {
 }
 
 local colorschemes = {
-  tokyionight = { "folke/tokyonight.nvim" }
+  tokyionight = { "folke/tokyonight.nvim" },
+  horizon = { "lunarvim/horizon.nvim" }
 }
 
 local rust_tools = {
@@ -163,11 +170,37 @@ local rust_tools = {
   ft = { "rust", "rs" },
 }
 
+local git_fugitive = {
+  "tpope/vim-fugitive",
+  cmd = {
+    "G",
+    "Git",
+    "Gdiffsplit",
+    "Gread",
+    "Gwrite",
+    "Ggrep",
+    "GMove",
+    "GDelete",
+    "GBrowse",
+    "GRemove",
+    "GRename",
+    "Glgrep",
+    "Gedit"
+  },
+  ft = { "fugitive" }
+}
+
+local ts_rainbow = {
+  "p00f/nvim-ts-rainbow",
+}
+
 lvim.plugins = {
   lsp_lines,
   numb,
   colorschemes.tokyionight,
-  rust_tools
+  rust_tools,
+  git_fugitive,
+  ts_rainbow
 }
 
 --[[
