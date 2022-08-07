@@ -26,7 +26,6 @@ lvim.keys.normal_mode["<C-s>"]        = ":w<CR>"
 lvim.keys.normal_mode["<C-q>"]        = ":q<CR>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 lvim.keys.normal_mode["C-t"]          = false
 -- WhichKey Keymaps
-lvim.builtin.which_key.mappings["x"]  = { vim.diagnostic.open_float, "Open diagnostics float" }
 lvim.builtin.which_key.mappings["c"]  = { ":let @/ = \"\"<CR>", "Clear search" }
 lvim.builtin.which_key.mappings["d"]  = { ":bprevious<CR>:bdelete #<CR>", "Close bufferline tab" }
 lvim.builtin.which_key.mappings["bc"] = { ":BufferKill<CR>", "Close buffer" }
