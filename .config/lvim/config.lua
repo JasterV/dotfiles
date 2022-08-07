@@ -126,14 +126,6 @@ lvim.lsp.automatic_servers_installation = true
 --[[
   ADDITIONAL PLUGINS
 ]]
-
-local lsp_lines = {
-  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  config = function()
-    require("lsp_lines").setup {}
-  end
-}
-
 local numb = {
   "nacro90/numb.nvim",
   config = function()
@@ -194,7 +186,6 @@ local ts_rainbow = {
 }
 
 lvim.plugins = {
-  lsp_lines,
   numb,
   colorschemes.tokyionight,
   rust_tools,
