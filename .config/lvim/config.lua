@@ -21,10 +21,14 @@ lvim.lsp.diagnostics.virtual_text = false
  KEYMAPS
 --]]
 
-lvim.leader                           = "space"
-lvim.keys.normal_mode["<C-s>"]        = ":w<CR>"
-lvim.keys.normal_mode["<C-q>"]        = ":q<CR>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
-lvim.keys.normal_mode["C-t"]          = false
+lvim.leader                      = "space"
+lvim.keys.normal_mode["<C-s>"]   = ":w<CR>"
+lvim.keys.normal_mode["<C-q>"]   = ":q<CR>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+lvim.keys.normal_mode["<C-t>"]   = false
+lvim.keys.normal_mode["<Tab>"]   = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["<C-n>"]   = ":NvimTreeToggle<CR>"
+
 -- WhichKey Keymaps
 lvim.builtin.which_key.mappings["c"]  = { ":let @/ = \"\"<CR>", "Clear search" }
 lvim.builtin.which_key.mappings["d"]  = { ":bprevious<CR>:bdelete #<CR>", "Close bufferline tab" }
