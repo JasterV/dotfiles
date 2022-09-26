@@ -4,6 +4,7 @@
 
 vim.opt.termguicolors = true
 vim.opt.relativenumber = true
+vim.o.guifont = "FiraCode Nerd Font Mono:h20"
 
 --[[
  GENERAL LVIM CONFIG
@@ -33,9 +34,14 @@ lvim.keys.normal_mode["<C-n>"]   = ":NvimTreeToggle<CR>"
 lvim.builtin.which_key.mappings["c"]  = { ":let @/ = \"\"<CR>", "Clear search" }
 lvim.builtin.which_key.mappings["d"]  = { ":bprevious<CR>:bdelete #<CR>", "Close bufferline tab" }
 lvim.builtin.which_key.mappings["bc"] = { ":BufferKill<CR>", "Close buffer" }
-lvim.builtin.which_key.mappings["lt"] = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Toggle LSP lines" }
 lvim.builtin.which_key.mappings["gP"] = { ":Git pull<CR>", "Git pull" }
-
+lvim.builtin.which_key.mappings["f"]  = { ":Telescope find_files<CR>", "Find files" }
+lvim.builtin.which_key.mappings["sg"] = { ":Telescope git_files<CR>", "Find Git files" }
+lvim.builtin.which_key.mappings["o"]  = { ":e#<CR>", "Go to last buffer" }
+lvim.builtin.which_key.mappings["bo"] = {
+  "<cmd>Telescope buffers previewer=false theme=dropdown initial_mode=normal<CR>",
+  "Buffers"
+}
 --[[
  BUILTIN PLUGINS
 
@@ -98,6 +104,10 @@ lvim.builtin.telescope.defaults.mappings = {
     ["<C-k>"] = actions.move_selection_previous,
   },
 }
+lvim.builtin.telescope.pickers.find_files.theme = "dropdown"
+lvim.builtin.telescope.pickers.git_files = {
+  theme = "dropdown"
+}
 
 -- Lualine
 local components = require("lvim.core.lualine.components")
@@ -158,7 +168,7 @@ local rust_tools = {
           require("lvim.lsp").common_on_attach(client, bufnr)
           local rt = require "rust-tools"
           -- Hover actions
-          vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+          vim.keymap.set("n", "<leader>ha", rt.hover_actions.hover_actions, { buffer = bufnr })
           -- Code action groups
           vim.keymap.set("n", "<leader>lA", rt.code_action_group.code_action_group, { buffer = bufnr })
         end,
