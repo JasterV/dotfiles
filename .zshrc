@@ -1,64 +1,26 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+# Path to ASDF version manager
+export ASDF_DIR=$HOME/.asdf
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PATH="$PATH:$HOME/Packages/go/bin/"
-export PATH="$PATH:/home/victor/Packages/cmake/bin"
-export PATH="$PATH:/home/victor/Packages/lua/bin"
-export PATH="$PATH:/home/victor/Packages/lua-language-server/bin"
-export PATH="$PATH:/home/victor/.local/bin"
-export PATH="$PATH:/home/victor/Packages/node/node16/bin"
-export PATH="$PATH:/home/victor/Packages/jdk-18.0.2/bin"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="half-life"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -66,14 +28,11 @@ ZSH_THEME="half-life"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git rust sudo docker docker-compose fzf tmux)
@@ -82,36 +41,28 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='nvim'
+fi
 
 # ALIAS
 
 # Dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
-# CD 
-alias cdp="cd $HOME/Documents/Projects"
-alias cdv="cd $HOME/.config/nvim"
-
 # VIM
 alias \vim="vim"
 alias \nvim="nvim"
-alias nvim="lvim"
-alias vim="lvim"
-alias v="lvim"
+alias vim="lvide"
+alias nvim="lvide"
+alias lvim="lvide"
+alias v="lvide"
 
 # Wireguard
 alias wgu="sudo wg-quick up"
@@ -123,24 +74,12 @@ alias gac="git add . && git commit -m"
 alias gc="git commit"
 alias gcm="git commit -m"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/victor/Packages/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/victor/Packages/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/victor/Packages/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/victor/Packages/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-# Deactivate conda base environment
-conda deactivate
+# Scripts
 
-alias luamake=/home/victor/Packages/lua-language-server/3rd/luamake/luamake
 
-[ -f "/home/victor/.ghcup/env" ] && source "/home/victor/.ghcup/env" # ghcup-env
+. $ASDF_DIR/asdf.sh
 
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
