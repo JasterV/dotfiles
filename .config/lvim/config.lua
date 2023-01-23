@@ -13,10 +13,12 @@ vim.o.guifont = "FiraCode Nerd Font Mono:h20"
 lvim.use_icons = true
 lvim.colorscheme = "tokyonight"
 lvim.log.level = "warn"
-lvim.format_on_save = true
 lvim.transparent_window = false
+lvim.format_on_save = { enabled = true }
 -- Disable virtual text
 lvim.lsp.diagnostics.virtual_text = false
+-- to disable icons and use a minimalist setup set this as false
+lvim.use_icons = true
 
 --[[
  KEYMAPS
@@ -42,9 +44,9 @@ lvim.builtin.which_key.mappings["bo"] = {
   "<cmd>Telescope buffers previewer=false theme=dropdown initial_mode=normal<CR>",
   "Buffers"
 }
+
 --[[
  BUILTIN PLUGINS
-
  After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 --]]
 
@@ -53,7 +55,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 
 -- Notify
-lvim.builtin.notify.active = true
+-- lvim.builtin.notify.active = true
 
 -- Terminal
 lvim.builtin.terminal.active = false
@@ -136,6 +138,12 @@ lvim.builtin.lualine.inactive_sections = {
 
 -- LSP
 -- lvim.lsp.automatic_servers_installation = true
+-- -- make sure server will always be installed even if the server is in skipped_servers list
+-- lvim.lsp.installer.setup.ensure_installed = {
+--     "sumneko_lua",
+--     "jsonls",
+-- }
+
 
 --[[
   ADDITIONAL PLUGINS
@@ -148,7 +156,6 @@ local numb = {
 }
 
 local colorschemes = {
-  tokyionight = { "folke/tokyonight.nvim" },
   horizon = { "lunarvim/horizon.nvim" }
 }
 
@@ -204,7 +211,6 @@ local ts_rainbow = {
 
 lvim.plugins = {
   numb,
-  colorschemes.tokyionight,
   rust_tools,
   git_fugitive,
   ts_rainbow
