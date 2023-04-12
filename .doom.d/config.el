@@ -18,7 +18,7 @@
 ;; - `doom-unicode-font' -- for unicode glyphs
 ;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
 
-(setq doom-font (font-spec :family "Fira Mono" :size 18))
+(setq doom-font (font-spec :family "Fira Mono" :size 20))
 
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
