@@ -21,6 +21,7 @@ return {
         "yaml",
         "elixir",
         "rust",
+        "go",
       })
     end
   end,

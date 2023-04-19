@@ -7,6 +7,8 @@ return {
       servers = {
         elixirls = {},
         rust_analyzer = {},
+        gopls = {},
+        bashls = {},
       },
     },
   },
