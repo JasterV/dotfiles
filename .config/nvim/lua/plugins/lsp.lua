@@ -9,6 +9,13 @@ return {
         rust_analyzer = {},
         gopls = {},
         bashls = {},
+        denols = {
+          root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+        },
+        tsserver = {
+          root_dir = require("lspconfig.util").root_pattern("package.json"),
+          single_file_support = false,
+        },
       },
     },
   },
