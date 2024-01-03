@@ -1,6 +1,8 @@
 local M = {}
 
-local max = 5
+local max = 10
+
+local keymap_opts = { expr = true, silent = true }
 
 function M.cowboy()
   ---@type table?
@@ -33,7 +35,7 @@ function M.cowboy()
         end)
         return map
       end
-    end, { expr = true, silent = true })
+    end, keymap_opts)
   end
 end
 
