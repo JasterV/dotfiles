@@ -5,10 +5,6 @@ discipline.cowboy()
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
-keymap.set("n", "<leader>sx", require("telescope.builtin").resume, opts)
-
-keymap.set("n", "x", '"_x')
-
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
@@ -39,7 +35,3 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.goto_next()
 end, opts)
-
-keymap.set("n", "<leader>r", function()
-  require("craftzdog.utils").replaceHexWithHSL()
-end)
