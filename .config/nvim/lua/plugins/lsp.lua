@@ -18,6 +18,7 @@ return {
         -- TOML toolkit
         "taplo",
         "typescript-language-server",
+        "astro-language-server",
         "yaml-language-server",
         "lua-language-server",
         "stylua",
