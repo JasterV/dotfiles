@@ -4,6 +4,7 @@ return {
     opts = {
       ensure_installed = {
         "astro",
+        "lua",
         "cmake",
         "cpp",
         "css",
