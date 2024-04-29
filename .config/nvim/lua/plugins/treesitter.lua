@@ -15,6 +15,8 @@ return {
         "rust",
         "scss",
         "sql",
+        "heex",
+        "elixir",
       },
     },
     config = function(_, opts)

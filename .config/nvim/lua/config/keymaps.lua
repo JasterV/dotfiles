@@ -35,3 +35,11 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.goto_next()
 end, opts)
+
+-- Testing
+keymap.set(
+  "n",
+  "<leader>td",
+  "<cmd>TestNearest<cr>",
+  { noremap = true, silent = true, desc = "Run test with vim-test" }
+)

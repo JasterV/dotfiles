@@ -26,4 +26,14 @@ return {
       })
     end,
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        tailwindcss = {
+          filetypes_include = { "heex", "elixir" },
+        },
+      },
+    },
+  },
 }
