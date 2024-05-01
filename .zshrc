@@ -1,16 +1,9 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-# Path to ASDF version manager
-export ASDF_DIR=$HOME/.asdf
+export PATH=$HOME/.cargo/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="half-life"
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
 
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
@@ -30,20 +23,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # see 'man strftime' for details.
 HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git rust sudo docker docker-compose fzf tmux)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nvim'
@@ -51,35 +30,22 @@ else
   export EDITOR='nvim'
 fi
 
+ZSH_THEME="half-life"
+
+plugins=(git rust sudo docker docker-compose fzf)
+
+source $ZSH/oh-my-zsh.sh
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
 # ALIAS
+alias v="nvim"
 
-# Dotfiles
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+eval "$(/Users/victormartinez/.local/bin/mise activate zsh)"
 
-# VIM
-alias \vim="vim"
-alias \nvim="nvim"
-alias vim="lvide"
-alias nvim="lvide"
-alias lvim="lvide"
-alias v="lvide"
-
-# Wireguard
-alias wgu="sudo wg-quick up"
-alias wgd="wg-quick down" 
-
-# Git
-alias ga="git add ."
-alias gac="git add . && git commit -m"
-alias gc="git commit"
-alias gcm="git commit -m"
-
-# Scripts
-
-
-. $ASDF_DIR/asdf.sh
-
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
