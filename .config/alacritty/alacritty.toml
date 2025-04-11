@@ -1,0 +1,170 @@
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Paste"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Copy"
+
+[[keyboard.bindings]]
+action = "ClearLogNotice"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\f"
+key = "L"
+mode = "~Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "PageUp"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "PageDown"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToTop"
+key = "Home"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "End"
+mode = "~Alt"
+mods = "Shift"
+
+[general]
+live_config_reload = true
+working_directory = "None"
+
+[terminal]
+
+[colors.bright]
+black = "#666666"
+blue = "#7aa6da"
+cyan = "#70c0b1"
+green = "#b9ca4a"
+magenta = "#c397d8"
+red = "#d54e53"
+white = "#eaeaea"
+yellow = "#e7c547"
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[colors.footer_bar]
+background = "#c5c8c6"
+foreground = "#1d1f21"
+
+[colors.hints.end]
+background = "#1d1f21"
+foreground = "#e9ff5e"
+
+[colors.hints.start]
+background = "#e9ff5e"
+foreground = "#1d1f21"
+
+[colors.line_indicator]
+background = "None"
+foreground = "None"
+
+[colors.normal]
+black = "#1d1f21"
+blue = "#81a2be"
+cyan = "#8abeb7"
+green = "#b5bd68"
+magenta = "#b294bb"
+red = "#cc6666"
+white = "#c5c8c6"
+yellow = "#f0c674"
+
+[colors.primary]
+background = "#1d1f21"
+foreground = "#c5c8c6"
+
+[colors.search.focused_match]
+background = "#000000"
+foreground = "#ffffff"
+
+[colors.search.matches]
+background = "#ffffff"
+foreground = "#000000"
+
+[colors.selection]
+background = "CellForeground"
+text = "CellBackground"
+
+[colors.vi_mode_cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[cursor]
+blink_interval = 750
+blink_timeout = 5
+thickness = 0.15
+unfocused_hollow = true
+vi_mode_style = "None"
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 16
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "FiraCode Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ''',│`|:"' ()[]{}<>	'''
+
+[terminal.shell]
+program = "/bin/zsh"
+
+[window]
+decorations = "full"
+gtk_theme_variant = "None"
+opacity = 0.9
+startup_mode = "Windowed"
+title = "Alacritty"
+
+[window.dimensions]
+columns = 0
+lines = 0
+
+[window.padding]
+x = 0
+y = 0
+
+[keyboard]
