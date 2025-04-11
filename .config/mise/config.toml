@@ -1,0 +1,9 @@
+[tools]
+elixir = "latest"
+elixir-ls = "latest"
+erlang = "latest"
+fwup = "latest"
+go = "1.17"
+neovim = "0.10.4"
+node = "latest"
+yarn = "latest"
