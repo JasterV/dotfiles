@@ -1,0 +1,9 @@
+[submodule ".config/polybar/polybar-pulseaudio-control"]
+	path = .config/polybar/polybar-pulseaudio-control
+	url = git@github.com:marioortizmanero/polybar-pulseaudio-control.git
+[submodule ".config/xmonad/xmonad-contrib"]
+	path = .config/xmonad/xmonad-contrib
+	url = https://github.com/xmonad/xmonad-contrib
+[submodule ".config/xmonad/xmonad"]
+	path = .config/xmonad/xmonad
+	url = https://github.com/xmonad/xmonad
