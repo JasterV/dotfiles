@@ -2,6 +2,10 @@ export PATH=$HOME/.cargo/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+export VAULT_ADDR=https://vault.helloprima.com:8200
+
+export PROJECTS_HOME=~/Documents/Prima
+
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
@@ -25,9 +29,9 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
+  export EDITOR='hx'
 else
-  export EDITOR='nvim'
+  export EDITOR='hx'
 fi
 
 ZSH_THEME="half-life"
@@ -47,5 +51,11 @@ fi
 # ALIAS
 alias v="nvim"
 
-eval "$(/Users/victormartinez/.local/bin/mise activate zsh)"
+alias vault-login="vault login -method=oidc -path=okta --no-print"
 
+eval "$(/home/victor-martinez/.local/bin/mise activate zsh)"
+eval "$(zellij setup --generate-auto-start zsh)"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+[ -f "/home/victor-martinez/.ghcup/env" ] && . "/home/victor-martinez/.ghcup/env" # ghcup-env
