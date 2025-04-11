@@ -1,6 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Victor Martinez
+	name = JasterV
 	email = 49537445+JasterV@users.noreply.github.com
 [init]
 	defaultBranch = main
