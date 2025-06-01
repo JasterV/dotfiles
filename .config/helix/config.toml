@@ -1,7 +1,7 @@
 theme = "catppuccin_macchiato"
 
 [editor]
-line-number = "absolute"
+line-number = "relative"
 cursorline = true
 mouse = true
 middle-click-paste = false
@@ -12,12 +12,24 @@ end-of-line-diagnostics = "hint"
 
 [editor.inline-diagnostics]
 cursor-line = "warning" # show warnings and errors on the cursorline inline
+other-lines = "warning"
 
 [editor.lsp]
 enable = true
 display-messages = true
 display-progress-messages = true
 display-inlay-hints = false
+
+[editor.whitespace]
+render = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+nnbsp = "␣"
+tab = "→"
+newline = "⏎"
+tabpad = "·"
 
 [editor.cursor-shape]
 normal = "block"
