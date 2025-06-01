@@ -36,10 +36,21 @@ roots = ["package.json", "astro.config.mjs"]
 formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-astro", "--parser", "astro"] }
 auto-format = true
 
+[language-server.jsonls]
+command = "vscode-json-languageserver"
+args = ["--stdio"]
+
 [[language]]
 name = "json"
 formatter = { command = "prettier", args = ["--parser", "json"] }
 auto-format = true
+language-servers = [ "jsonls" ] # Link the language server to the jsonc language
+
+[[language]]
+name = "jsonc"
+formatter = { command = "prettier", args = ["--parser", "json"] }
+auto-format = true
+language-servers = [ "jsonls" ] # Link the language server to the jsonc language
 
 [[language]]
 name = "html"
