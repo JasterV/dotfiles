@@ -1,3 +1,19 @@
+[language-server.codebook]
+command = "codebook-lsp"
+args = ["serve"]
+
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["--stdio"]
+
+[language-server.jsonls]
+command = "vscode-json-languageserver"
+args = ["--stdio"]
+
+[language-server.tailwind-heex]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
 [[language]]
 name = "typescript"
 language-servers = ["typescript-language-server"]
@@ -22,23 +38,19 @@ language-servers = ["typescript-language-server"]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
-[language-server.astro-ls]
-command = "astro-ls"
-args = ["--stdio"]
-
 [[language]]
 name = "astro"
 scope = "source.astro"
 injection-regex = "astro"
 file-types = ["astro"]
-language-servers = ["astro-ls"]
+language-servers = ["astro-ls", "codebook"]
 roots = ["package.json", "astro.config.mjs"]
 formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-astro", "--parser", "astro"] }
 auto-format = true
 
-[language-server.jsonls]
-command = "vscode-json-languageserver"
-args = ["--stdio"]
+[[language]]
+name = "markdown"
+language-servers = ["codebook"]
 
 [[language]]
 name = "json"
@@ -61,10 +73,6 @@ auto-format = true
 name = "css"
 formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
-
-[language-server.tailwind-heex]
-command = "tailwindcss-language-server"
-args = ["--stdio"]
 
 [[language]]
 name = "elixir"
