@@ -54,8 +54,17 @@ mode.select = "SELECT"
 
 [keys.normal]
 # Copy to both registers always
-"y" = ["yank_to_clipboard", "yank"]
-"C-j" = [
+y = ["yank_to_clipboard", "yank"]
+
+C-s = ":w" # (save file)
+
+C-r = ":config-reload"
+# Open yazi at current buffer's directory
+C-y = ":open %sh{ zellij run -fc  -x 10%% -y 10%% --width 80%% --height 80%% -- sh -c \"yazi --chooser-file=/proc/$$/fd/1 -- %{buffer_name}; kill -s CONT $$\"; kill -s STOP $$ }"
+# Open lazygit
+C-m = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+C-j = [
   "move_next_word_end",
   "select_mode",
   "insert_at_line_start",
@@ -66,7 +75,8 @@ mode.select = "SELECT"
   "goto_next_paragraph",
   "trim_selections",
 ]
-"C-k" = [
+
+C-k = [
   "move_next_word_start",
   "select_mode",
   "insert_at_line_end",
@@ -77,9 +87,23 @@ mode.select = "SELECT"
   "goto_prev_paragraph",
   "trim_selections",
 ]
-"C-h" = ["goto_line_start"]
-"C-l" = ["goto_line_end"]
-# Open yazi at current buffer's directory
-C-y = ":open %sh{ zellij run -fc  -x 10%% -y 10%% --width 80%% --height 80%% -- sh -c \"yazi --chooser-file=/proc/$$/fd/1 -- %{buffer_name}; kill -s CONT $$\"; kill -s STOP $$ }"
-# Open lazygit
-C-m = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+[keys.normal.space]
+Y = ":yank-diagnostic"
+
+[keys.normal.";"]
+f = "file_picker_in_current_buffer_directory"
+F = "file_picker_in_current_directory"
+s = "symbol_picker"
+S = "workspace_symbol_picker"
+g = "changed_file_picker"
+b = "buffer_picker"
+d = "diagnostics_picker"
+D = "workspace_diagnostics_picker"
+j = "jumplist_picker"
+";" = "last_picker"
+
+[keys.normal.z]
+h = "goto_line_start"
+l = "goto_line_end"
+
