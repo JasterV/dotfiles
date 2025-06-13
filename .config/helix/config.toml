@@ -53,6 +53,8 @@ mode.insert = "INSERT"
 mode.select = "SELECT"
 
 [keys.normal]
+# Copy to both registers always
+"y" = ["yank_to_clipboard", "yank"]
 "C-j" = [
   "move_next_word_end",
   "select_mode",
@@ -77,6 +79,7 @@ mode.select = "SELECT"
 ]
 "C-h" = ["goto_line_start"]
 "C-l" = ["goto_line_end"]
-# C-y = ":sh zellij run -f -x 10%% -y 10%% --width 80%% --height 80%% -- bash ~/.config/helix/yazi-picker.sh"
+# Open yazi at current buffer's directory
 C-y = ":open %sh{ zellij run -fc  -x 10%% -y 10%% --width 80%% --height 80%% -- sh -c \"yazi --chooser-file=/proc/$$/fd/1 -- %{buffer_name}; kill -s CONT $$\"; kill -s STOP $$ }"
+# Open lazygit
 C-m = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
