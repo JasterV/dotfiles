@@ -5,6 +5,8 @@ export PATH=$HOME/.mix/escripts:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 export CARGO_HOME=$HOME/.cargo/
 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 export VAULT_ADDR=https://vault.helloprima.com:8200
 
 export PROJECTS_HOME=~/Documents/Prima
@@ -69,3 +71,15 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 [ -f "/home/victor-martinez/.ghcup/env" ] && . "/home/victor-martinez/.ghcup/env" # ghcup-env
 
 source <(jj util completion zsh)
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/linuxbrew/.linuxbrew/Cellar/vault/1.19.0/bin/vault vault
+
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+
+# bun completions
+[ -s "/home/victor-martinez/.bun/_bun" ] && source "/home/victor-martinez/.bun/_bun"
+
+# Add zsh functions
+fpath+=${ZDOTDIR:-~}/.zsh_functions
